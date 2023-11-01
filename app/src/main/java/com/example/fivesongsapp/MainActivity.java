@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     MediaPlayer mediaplayer;
     int count_pause = 0 ;
     Button button_1;
     Button button_2;
     Button button_3;
     Button button_4;
-
     Button button_5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,36 +26,11 @@ public class MainActivity extends AppCompatActivity {
         button_3 = findViewById(R.id.button3);
         button_4 = findViewById(R.id.button4);
         button_5 = findViewById(R.id.button5);
-        button_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song(R.raw.lol);
-            }
-        });
-        button_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song(R.raw.dancin);
-            }
-        });
-        button_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song(R.raw.im_good);
-            }
-        });
-        button_4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song(R.raw.murder);
-            }
-        });
-        button_5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                song(R.raw.revelca_song);
-            }
-        });
+        button_1.setOnClickListener(this);
+        button_2.setOnClickListener(this);
+        button_3.setOnClickListener(this);
+        button_4.setOnClickListener(this);
+        button_5.setOnClickListener(this);
     }
 
     public void song(int song){
@@ -114,6 +88,22 @@ public class MainActivity extends AppCompatActivity {
             mediaplayer.release();
             mediaplayer = null;
             Toast.makeText(this, "Song Stopped", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.button1) {
+            song(R.raw.lol);
+        } else if (id == R.id.button2) {
+            song(R.raw.dancin);
+        } else if (id == R.id.button3) {
+            song(R.raw.im_good);
+        } else if (id == R.id.button4) {
+            song(R.raw.murder);
+        } else if (id == R.id.button5) {
+            song(R.raw.revelca_song);
         }
     }
 }
